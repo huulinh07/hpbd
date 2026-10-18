@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday</title>
+  <meta name="description" content="Trang web chúc mừng sinh nhật ngọt ngào dành riêng cho Hoài Anh." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Dancing+Script:wght@500;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap&subset=vietnamese" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Petal & FX Canvas (Full DPI crisp rendering) -->
+  <canvas id="petalCanvas"></canvas>
+
+  <!-- Floating Music Player -->
+  <div class="music-player" id="music-player" role="button" aria-label="Bật/Tắt nhạc nền" title="Bật/Tắt nhạc nền">
+    <div class="music-disc" id="music-disc">
+      <div class="disc-vinyl">
+        <div class="disc-core"></div>
+      </div>
+      <span class="music-icon" id="music-icon">🎵</span>
+    </div>
+    <div class="music-notes" id="music-notes"></div>
+    <div class="music-tooltip" id="music-tooltip">Bật nhạc nè ♫</div>
+  </div>
+  <audio id="bgm" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-subtitle" id="hero-subtitle">🌹 Một ngày đặc biệt dành cho người đặc biệt nhất 🌹</p>
+      <h1 class="hero-title" id="hero-title">
+        Chúc Mừng Sinh Nhật<br/>
+        <span class="name-highlight">Hoài Anh</span>
+      </h1>
+      <p class="hero-date" id="hero-date">♡ Ngày 25 Tháng 10 ♡</p>
+      <a href="#counter" class="cta-btn" id="cta-btn">Mở món quà của em ↓</a>
+    </div>
+    <div class="scroll-indicator" id="scroll-indicator">
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Love Days Counter Section -->
+  <section class="counter-section" id="counter">
+    <div class="section-inner">
+      <div class="section-tag">⏳ Chặng đường yêu thương</div>
+      <h2 class="section-title">Hành Trình Mình Bên Nhau</h2>
+      <div class="counter-grid">
+        <div class="counter-card">
+          <span class="counter-val" id="count-days">0</span>
+          <span class="counter-unit">Ngày</span>
+        </div>
+        <div class="counter-colon">:</div>
+        <div class="counter-card">
+          <span class="counter-val" id="count-hours">00</span>
+          <span class="counter-unit">Giờ</span>
+        </div>
+        <div class="counter-colon">:</div>
+        <div class="counter-card">
+          <span class="counter-val" id="count-mins">00</span>
+          <span class="counter-unit">Phút</span>
+        </div>
+        <div class="counter-colon">:</div>
+        <div class="counter-card">
+          <span class="counter-val" id="count-secs">00</span>
+          <span class="counter-unit">Giây</span>
+        </div>
+      </div>
+      <p class="counter-sub">Mỗi một giây phút trôi qua đều là những khoảnh khắc quý giá anh luôn trân trọng 💕</p>
+    </div>
+  </section>
+
+  <!-- Love Letter Section with Interactive Envelope -->
+  <section class="letter-section" id="letter">
+    <div class="section-inner">
+      <div class="section-tag">💌 Lời từ trái tim</div>
+      <h2 class="section-title">Bức Thư Cho Em</h2>
+      
+      <!-- Envelope interactive button -->
+      <div class="envelope-trigger-box" id="envelope-trigger-box">
+        <div class="wax-seal-btn" id="wax-seal-btn" onclick="openEnvelope()">
+          <span class="seal-icon">💌</span>
+          <span class="seal-label">Chạm để mở thư</span>
+          <span class="seal-hint">Nhấp vào đây</span>
+        </div>
+      </div>
+
+      <div class="letter-card" id="letter-card">
+        <div class="letter-deco">✦</div>
+        <p class="letter-text">
+          Gửi <em>Hoài Anh</em> — công chúa nhỏ của anh,
+        </p>
+        <p class="letter-text">
+          Hôm nay là ngày bé iu bước sang tuổi 24 rùi nèee. Thế là chúng mình bằng tuổi nhau rồi =))))
+          Anh vẫn chưa thể tin được là mối tình đầu của anh giờ đây vẫn là người anh yêu thương nhất.
+        </p>
+        <p class="letter-text">
+          Cảm ơn em đã bước vào cuộc đời anh.
+          Cảm ơn em vì nụ cười rạng rỡ luôn sưởi ấm anh những ngày mệt mỏi, cảm ơn sự thấu hiểu, dịu dàng của em dành cho anh.
+          Rất nhanh đây thôi chúng mình sẽ được gặp nhau rồi ^^. Anh quá là mong chờ tới ngày được gặp lại tình yêu của anh.
+        </p>
+        <p class="letter-text">
+          Nhân ngày sinh nhật, anh chúc bé iu luôn an yên, luôn nở nụ cười thật tươi và đạt được tất cả những điều mà em ấp ủ.
+          Mong rằng những năm tháng thanh xuân sau này, dù trời mưa hay trời nắng, người cùng em đi qua vẫn luôn là anh.
+        </p>
+        <p class="letter-text">
+          Mong rằng những năm tới chúng mình có thể đón sinh nhật cùng nhau và làm nhiều thứ cùng nhau hơn.
+          Chúc cho những điều tốt đẹp nhất sẽ đến với chúng mình.
+          Anh yêu em nhất trên đời ♥️ </p>
+        <p class="letter-sign">
+          Yêu em nhiều hơn mỗi ngày ♡<br/>
+          <span class="letter-from">— From HANOI with love ♥️</span> <br/>
+          <span class="letter-from">Thằng chồng già - Nguyen Huu Linh</span>
+        </p>
+        <div class="letter-deco">✦</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Surprise Section -->
+  <section class="surprise-section" id="surprise">
+    <div class="section-inner">
+      <div class="section-tag">Đôi lời nhắn nhủ</div>
+      <h2 class="section-title">Chạm Vào Từng Trái Tim</h2>
+      <p class="section-sub">Mỗi trái tim cất giữ một lời nhắn gửi riêng dành cho em...</p>
+      <div class="hearts-grid" id="hearts-grid">
+        <div class="heart-card" id="hc-1" onclick="revealHeart(this, 0)">
+          <div class="heart-front">💖</div>
+          <div class="heart-back">Em là điều tuyệt vời nhất từng đến với cuộc đời anh ♥️</div>
+        </div>
+        <div class="heart-card" id="hc-2" onclick="revealHeart(this, 1)">
+          <div class="heart-front">💗</div>
+          <div class="heart-back">Anh yêu em nhất trên đờiiii</div>
+        </div>
+        <div class="heart-card" id="hc-3" onclick="revealHeart(this, 2)">
+          <div class="heart-front">💝</div>
+          <div class="heart-back">Thơm em 3000 cái 😘😘😘 </div>
+        </div>
+        <div class="heart-card" id="hc-4" onclick="revealHeart(this, 3)">
+          <div class="heart-front">💕</div>
+          <div class="heart-back">Em yêu ơi, em là cả vũ trụ của anh.</div>
+        </div>
+        <div class="heart-card" id="hc-5" onclick="revealHeart(this, 4)">
+          <div class="heart-front">🌷</div>
+          <div class="heart-back">Cảm ơn em vì đã dịu dàng bước vào cuộc sống của anh ✨</div>
+        </div>
+        <div class="heart-card" id="hc-6" onclick="revealHeart(this, 5)">
+          <div class="heart-front">💓</div>
+          <div class="heart-back">Tuổi mới thật rực rỡ và luôn hạnh phúc em nhé! Yêu em 🎂</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Gallery Section with Lightbox -->
+  <section class="gallery-section" id="gallery">
+    <div class="section-inner">
+      <div class="section-tag">📸 Một vài khoảnh khắc</div>
+      <h2 class="section-title">Kỷ Niệm Yêu Xa =)))</h2>
+      <p class="section-sub">(Chạm để xem ảnh & lời nhắn)</p>
+      <div class="gallery-grid" id="gallery-grid">
+        <div class="gallery-item" id="gi-1" onclick="openLightbox(0)">
+          <img src="photos/first_photo.JPG" alt="Bức ảnh đầu tiên của hai đứa" loading="lazy" />
+          <div class="gallery-caption">
+            <span class="caption-title">Bức Ảnh Đầu Tiên</span>
+            <span class="caption-hint">Chạm để xem ✨</span>
+          </div>
+        </div>
+
+        <div class="gallery-item" id="gi-2" onclick="openLightbox(1)">
+          <img src="photos/first_call.PNG" alt="Cuộc gọi đầu tiên" loading="lazy" />
+          <div class="gallery-caption">
+            <span class="caption-title">Cuộc Gọi Đầu Tiên</span>
+            <span class="caption-hint">Chạm để xem ✨</span>
+          </div>
+        </div>
+
+        <div class="gallery-item" id="gi-3" onclick="openLightbox(2)">
+          <img src="photos/qua_dep.JPG" alt="Cô gái anh yêu" loading="lazy" />
+          <div class="gallery-caption">
+            <span class="caption-title">Bé iu của tuiii</span>
+            <span class="caption-hint">Chạm để xem ✨</span>
+          </div>
+        </div>
+
+        <div class="gallery-item" id="gi-4" onclick="openLightbox(3)">
+          <img src="photos/ao_dai.JPG" alt="Em trong tà áo dài" loading="lazy" />
+          <div class="gallery-caption">
+            <span class="caption-title">Tết tết tết</span>
+            <span class="caption-hint">Chạm để xem ✨</span>
+          </div>
+        </div>
+
+        <div class="gallery-item" id="gi-5" onclick="openLightbox(4)">
+          <img src="photos/tulip_kiss.JPG" alt="Bó hoa dành cho em" loading="lazy" />
+          <div class="gallery-caption">
+            <span class="caption-title">Bó hoa đẹp nhất</span>
+            <span class="caption-hint">Chạm để xem ✨</span>
+          </div>
+        </div>
+
+        <div class="gallery-item" id="gi-6" onclick="openLightbox(5)">
+          <img src="photos/quy_phi.PNG" alt="Quý phi của anh" loading="lazy" />
+          <div class="gallery-caption">
+            <span class="caption-title">Quý Phi Của Anh</span>
+            <span class="caption-hint">Chạm để xem ✨</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Birthday Cake & Wish Section -->
+  <section class="wish-section" id="wish">
+    <div class="wish-bg"></div>
+    <div class="section-inner">
+      <div class="wish-content" id="wish-content">
+        <div class="cake-wrapper" id="cake-wrapper">
+          <div class="cake" id="cake-anim">
+            <div class="candles">
+              <div class="candle" id="c1">
+                <div class="flame" id="f1"></div>
+                <div class="smoke" id="s1"></div>
+              </div>
+              <div class="candle" id="c2">
+                <div class="flame" id="f2"></div>
+                <div class="smoke" id="s2"></div>
+              </div>
+              <div class="candle" id="c3">
+                <div class="flame" id="f3"></div>
+                <div class="smoke" id="s3"></div>
+              </div>
+            </div>
+            <div class="cake-top"></div>
+            <div class="cake-mid"></div>
+            <div class="cake-bot"></div>
+          </div>
+        </div>
+        
+        <h2 class="wish-title" id="wish-title">Ước Một Điều Thật Đẹp ✨</h2>
+        <p class="wish-sub" id="wish-sub">Hãy nhắm mắt lại, ước một điều trong lòng rồi thổi nến nhé!</p>
+        
+        <div class="blow-controls" id="blow-controls">
+          <button class="mic-btn" id="mic-btn" onclick="toggleMicBlow()">
+            <span id="mic-btn-text">Em có thể thổi vào micro</span>
+          </button>
+          <div class="mic-status" id="mic-status"></div>
+          <div class="or-divider">— hoặc —</div>
+          <button class="blow-btn" id="blow-btn" onclick="blowCandles()">Chạm để Thổi Nến!</button>
+        </div>
+
+        <div class="wish-message" id="wish-message">
+          <div class="wish-sparkle">✨ 💖 ✨</div>
+          <p>
+            Mong mọi điều ước của dấu iu đều sẽ trở thành hiện thực.<br/>
+            Chúc em tuổi mới luôn ngập tràn niềm vui, nụ cười và hạnh phúc bên anh!<br/>
+            <strong>Happy Birthday, Hoài Anh yêu dấu! 🎉🎂🌹</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox Modal for Memories -->
+  <div class="lightbox-modal" id="lightbox-modal" onclick="closeLightbox(event)">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+      <div class="lightbox-media" id="lightbox-media"></div>
+      <div class="lightbox-info">
+        <h3 class="lightbox-title" id="lightbox-title"></h3>
+        <p class="lightbox-desc" id="lightbox-desc"></p>
+      </div>
+      <div class="lightbox-nav">
+        <button class="lightbox-btn" onclick="navLightbox(-1)">‹ Trước</button>
+        <span class="lightbox-counter" id="lightbox-counter">1 / 6</span>
+        <button class="lightbox-btn" onclick="navLightbox(1)">Sau ›</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer" id="footer">
+    <p>Được tạo nên bằng trọn vẹn yêu thương dành riêng cho <strong>Hoài Anh</strong> 💕</p>
+    <p class="footer-quote">"Em là hiện tại và là tất cả tương lai của anh."</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
